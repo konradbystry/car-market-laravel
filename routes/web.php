@@ -20,8 +20,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [CarMarketController::class, 'index']);
 
-Route::get('login/', [LoginController::class, 'generateView']);
 
-Route::get('ad/', [AdController::class, 'generateView']);  //temp
 
-Route::get('watches/', [WatchesController::class, 'generateView']);
+Route::get('ad', [AdController::class, 'generateView']);  //temp
+
+Route::get('watches', [WatchesController::class, 'generateView']);
+
+Route::get('auth/login', [LoginController::class, 'generateView']);
+
+Route::get('auth/save', [LoginController::class, 'save'])->name('auth.save');
