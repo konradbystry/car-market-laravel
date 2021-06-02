@@ -10,19 +10,23 @@
     <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/pure-min.css" integrity="sha384-Uu6IeWbM+gzNVXJcM9XV3SohHtmWE+3VGi496jvgX1jyvDTXfdK+rfZc8C1Aehk5" crossorigin="anonymous">
     <script src="assets/js/header.js" defer></script>
     <script src="https://kit.fontawesome.com/ae43476c3b.js" defer crossorigin="anonymous"></script>
-    <title>Car Market</title>
+    <title>{{env("APP_NAME")}}</title>
 </head>
 <body>
     <header>
         <a href="#" class="logo">Car Market</a>
         <ul>
-            <li><a href="#">Watching</a></li>
-            <li><a href="#">Login</a></li>
+
+            <li><a href={{env('APP_URL') . "/watches"}}>Watching</a></li>
+            <li><a href={{env('APP_URL') . "/auth/login"}}>Login</a></li>
+            <li><a href="#">Guest</a></li>
             <li><button class=button>+ Start selling</button></li>
         </ul>
     </header>
 
     @yield('content')
+
+
 
 </body>
 

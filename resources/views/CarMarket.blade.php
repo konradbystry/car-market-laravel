@@ -16,10 +16,10 @@
 
     @foreach ($cars as $car)
         <div class="ad">
-            <a href="#">
+            <a href={{env('APP_URL') . "/ad"}}>
                 <div class="content">
                     <div class="photo">
-                        <img src="http://localhost/car-market-laravel/public/assets/images/test-photo.jpg" alt="">
+                        <img src={{env('APP_URL') . "/assets/images/test-photo.jpg"}} alt="">
                     </div>
                     <div class="description">
                         <h2>{{$car->brand}} {{$car->model}}</h2>
