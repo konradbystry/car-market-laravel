@@ -18,14 +18,24 @@
         <ul>
 
             <li><a href={{env('APP_URL') . "/watches"}}>Watching</a></li>
-            <li><a href={{env('APP_URL') . "/auth/login"}}>Login</a></li>
-            <li><a href="#">Guest</a></li>
+            <li><a href=
+                @if(isset($user->username))
+                {{env('APP_URL') . "/logout"}}>
+                @else
+                {{env('APP_URL') . "/auth/login"}}>
+                @endif
+            @if(isset($user->username))
+            Logout
+            @else
+            Login
+            @endif
+            </a></li>
+            <li><a href="#">{{$user->username ?? "Guest"}}</a></li>
             <li><button class=button>+ Start selling</button></li>
         </ul>
     </header>
 
     @yield('content')
-
 
 
 </body>
