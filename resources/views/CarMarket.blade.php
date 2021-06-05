@@ -16,7 +16,7 @@
 
     @foreach ($cars as $car)
         <div class="ad">
-            <a href={{env('APP_URL') . "/ad"}}>
+            <a href={{env('APP_URL') . "/ad/" . $car->id_car}}>
                 <div class="content">
                     <div class="photo">
                         <img src={{env('APP_URL') . "/assets/images/test-photo.jpg"}} alt="">
