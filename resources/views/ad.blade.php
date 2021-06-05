@@ -1,7 +1,7 @@
 @extends('layouts.subpages-layout')
 
 @section('styles')
-<link rel="stylesheet" href="assets/css/ad-fullscreen.css">
+<link rel="stylesheet" href={{env('APP_URL') . "/assets/css/ad-fullscreen.css"}}>
 @endsection
 
 
@@ -15,15 +15,15 @@
                     <img src="http://localhost/car-market-laravel/public/assets/images/test-photo.jpg" alt="">
                 </div>
                 <div class="description">
-                    <h2>Ford Mustang</h2>
+                    <h2>{{$car->brand}} {{$car->model}}</h2>
                     <ul>
-                        <li>year</li>
-                        <li>car distance</li>
+                        <li>{{$car->production_date}}</li>
+                        <li>{{$car->distance_record}} km</li>
                         <li>enigne</li>
                     </ul>
                 </div>
                 <div class="price">
-                    <h2>100 000 pln</h3>
+                    <h2>{{$car->price}} pln</h3>
                 </div>
             </div>
         </a>
