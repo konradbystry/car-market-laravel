@@ -32,3 +32,5 @@ Route::get('auth/login', [LoginController::class, 'generateView']);
 Route::get('auth/check', [LoginController::class, 'check'])->name('auth.check');
 
 Route::get('/logout', [CarMarketController::class, 'logout'])->name('logout');
+
+Route::get('ad/{id}', [AdController::class, 'show']);
