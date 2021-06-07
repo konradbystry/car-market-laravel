@@ -16,7 +16,7 @@
 
     @foreach ($cars as $car)
         <div class="ad">
-            <a href={{env('APP_URL') . "/ad/" . $car->id_car}}>
+            <a href={{env('APP_URL') . "/ad/" . $car->id}}>
                 <div class="content">
                     <div class="photo">
                         <img src={{env('APP_URL') . "/assets/images/test-photo.jpg"}} alt="">
@@ -24,14 +24,13 @@
                     <div class="description">
                         <h2>{{$car->brand}} {{$car->model}}</h2>
                         <ul>
-                            <li>{{$car->production_date}}</li>
-                            <li>{{$car->distance_record}} km</li>
+                            <li>{{$car->year}}</li>
+                            <li>{{$car->distance}} km</li>
                             <li>2.0 Pb</li>
                         </ul>
                     </div>
                     <div class="price">
                         <h2>{{$car->price}} pln</h2>
-                        <button>obserwuj</button>
                     </div>
                 </div>
             </a>

@@ -10,7 +10,7 @@ class CarMarketController extends Controller
 {
     public function index()
     {
-        $user = User::where('id_user', '=', session('LoggedUser'))->first();
+        $user = User::where('id', '=', session('LoggedUser'))->first();
         $cars = Car::all();
 
         return view('CarMarket', [
