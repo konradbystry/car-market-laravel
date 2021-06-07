@@ -31,6 +31,7 @@
                     </div>
                     <div class="price">
                         <h2>{{$car->price}} pln</h2>
+                        <button>obserwuj</button>
                     </div>
                 </div>
             </a>
