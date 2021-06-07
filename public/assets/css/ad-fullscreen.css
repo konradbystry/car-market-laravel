@@ -54,3 +54,13 @@
 .content .price h2 {
     text-align: right;
 }
+
+.watch-button {
+    position: relative;
+    margin: 0 15px;
+    border: none;
+    background-color: #1e90ff;
+    color: #f2f2f2;
+    padding: 9px 23px;
+    cursor: pointer;
+}
