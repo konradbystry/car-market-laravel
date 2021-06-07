@@ -22,6 +22,7 @@ class LoginController extends Controller
     public function check(Request $request)
     {
 
+
         $request->validate([
             'user' => 'required',
             'password' => 'required'
@@ -37,7 +38,7 @@ class LoginController extends Controller
             if ($userInfo->password == $request->password) {
 
                 $request->session()->put('LoggedUser', $userInfo->id_user);
-                return redirect("/");
+                return redirect()->route('index');
             } else {
 
                 return back()->with('fail', 'Invalid password');
