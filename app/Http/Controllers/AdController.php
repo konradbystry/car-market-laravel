@@ -14,7 +14,7 @@ class AdController extends Controller
 
     public function show($id)
     {
-        $car = Car::where('id_car', '=', $id)->first();
+        $car = Car::where('id', '=', $id)->first();
         return view('ad', ['car' => $car]);
     }
 }
