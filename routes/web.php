@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('/', [CarMarketController::class, 'index']);
+Route::get('/', [CarMarketController::class, 'index'])->name('index');
 
 
 Route::get('ad', [AdController::class, 'generateView']);  //temp
