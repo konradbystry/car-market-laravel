@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Car;
+use App\Models\User;
 
 class AdController extends Controller
 {
@@ -16,5 +17,14 @@ class AdController extends Controller
     {
         $car = Car::where('id', '=', $id)->first();
         return view('ad', ['car' => $car]);
+    }
+
+    public function addToWatches()
+    {
+
+
+        $user = User::where('id', '=', session('LoggedUser'))->first();
+        $user->cars()->attach(2);
+        redirect()->route('index');
     }
 }
