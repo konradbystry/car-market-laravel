@@ -18,6 +18,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+use App\Models\Car;
+use App\Models\User;
 
 
 Route::get('/', [CarMarketController::class, 'index'])->name('index');
@@ -33,4 +35,6 @@ Route::get('auth/check', [LoginController::class, 'check'])->name('auth.check');
 
 Route::get('/logout', [CarMarketController::class, 'logout'])->name('logout');
 
-Route::get('ad/{id}', [AdController::class, 'show']);
+Route::get('ad/{id}', [AdController::class, 'show'])->name('show');
+
+Route::get('watch', [AdController::class, 'addToWatches'])->name('ad.watch');
