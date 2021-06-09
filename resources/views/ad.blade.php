@@ -24,11 +24,12 @@
                 </div>
                 <div class="price">
                     <h2>{{$car->price}} pln</h3>
-                    <button class="watch-button">watch</button>
+                    <form action="{{route('ad.watch')}}">
+                        <button class="watch-button">watch</button>
+                    </form>
+
                 </div>
             </div>
-
-
     </div>
 
 
