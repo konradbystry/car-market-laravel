@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -28,14 +29,14 @@ class LoginController extends Controller
             'password' => 'required'
         ]);
 
-        $userInfo = User::where('username', '=', $request->user)->first();
+        $userInfo = User::where('name', '=', $request->user)->first();
         //dd($userInfo);
 
         if (!$userInfo) {
 
             return back()->with('fail', 'Invalid username');
         } else {
-            if ($userInfo->password == $request->password) {
+            if (Hash::check($request->password, $userInfo->password)) {
 
                 $request->session()->put('LoggedUser', $userInfo->id);
                 return redirect()->route('index');
