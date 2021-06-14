@@ -4,6 +4,7 @@ use App\Http\Controllers\AdController;
 use App\Http\Controllers\CarMarketController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\WatchesController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,13 +26,17 @@ use App\Models\User;
 Route::get('/', [CarMarketController::class, 'index'])->name('index');
 
 
-Route::get('ad', [AdController::class, 'generateView']);  //temp
+// Route::post('ad', [AdController::class, 'generateView']);  //temp
 
 Route::get('watches', [WatchesController::class, 'generateView']);
 
 Route::get('auth/login', [LoginController::class, 'generateView']);
 
+Route::get('auth/register', [RegisterController::class, 'generateView']);
+
 Route::get('auth/check', [LoginController::class, 'check'])->name('auth.check');
+
+Route::get('auth/save', [RegisterController::class, 'save'])->name('auth.save');
 
 Route::get('/logout', [CarMarketController::class, 'logout'])->name('logout');
 
