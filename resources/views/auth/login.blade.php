@@ -8,9 +8,9 @@
 
 
 
-                <input type="user" id="stacked-user" name="user" placeholder="Login" value={{old('user')}} />
+                <input type="text" id="user" name='user' placeholder="Username" autocomplete="off" value="{{old('user')}}"> <br>
 
-                <input type="password" id="stacked-password" name="password" placeholder="Password"/>
+                <input type="password" id="password" name='password' placeholder="Password" /> <br>
                 <button type="submit" class="pure-button pure-button-primary">Sign in</button>
 
                 @if (@Session::get('fail'))
