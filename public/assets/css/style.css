@@ -259,3 +259,30 @@ header.sticky {
     text-decoration: none;
     color: rgb(51, 51, 51);
 }
+
+.emptyWatches {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.unwatch-button {
+    position: relative;
+    margin: 0 15px;
+    border: none;
+    background-color: red;
+    color: #f2f2f2;
+    padding: 9px 23px;
+    cursor: pointer;
+}
+
+.watch-button {
+    position: relative;
+    margin: 0 15px;
+    border: none;
+    background-color: #1e90ff;
+    color: #f2f2f2;
+    padding: 9px 23px;
+    cursor: pointer;
+}
