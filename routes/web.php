@@ -28,7 +28,9 @@ Route::get('/', [CarMarketController::class, 'index'])->name('index');
 
 // Route::post('ad', [AdController::class, 'generateView']);  //temp
 
-Route::get('watches', [WatchesController::class, 'generateView']);
+
+
+//auth
 
 Route::get('auth/login', [LoginController::class, 'generateView']);
 
@@ -40,6 +42,14 @@ Route::get('auth/save', [RegisterController::class, 'save'])->name('auth.save');
 
 Route::get('/logout', [CarMarketController::class, 'logout'])->name('logout');
 
+//ads
+
 Route::get('ad/{id}', [AdController::class, 'show'])->name('show');
 
-Route::get('watch', [AdController::class, 'addToWatches'])->name('ad.watch');
+Route::get('watch/{id}', [AdController::class, 'addToWatches'])->name('ad.watch');
+
+//watches
+
+Route::get('watches', [WatchesController::class, 'generateView'])->name('watches');
+
+Route::get('watches/unwatch/{id}', [WatchesController::class, 'unwatch'])->name('watches.unwatch');

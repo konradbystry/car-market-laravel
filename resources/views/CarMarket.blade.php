@@ -14,6 +14,7 @@
 
     <section class="ads">
 
+    @if (isset($cars))
     @foreach ($cars as $car)
         <div class="ad">
             <a href={{env('APP_URL') . "/ad/" . $car->id}}>
@@ -31,12 +32,16 @@
                     </div>
                     <div class="price">
                         <h2>{{$car->price}} pln</h2>
+                        <form action={{env('APP_URL') . "/watch/" . $car->id}}>
+                        <button class="watch-button">watch</button>
+                        </form>
                     </div>
                 </div>
             </a>
         </div>
-    @endforeach
 
+    @endforeach
+    @endif
     </section>
 
 @endsection

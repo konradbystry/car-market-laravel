@@ -19,12 +19,12 @@ class AdController extends Controller
         return view('ad', ['car' => $car]);
     }
 
-    public function addToWatches()
+    public function addToWatches($id)
     {
-
+        //dd('dodaje mordo');
 
         $user = User::where('id', '=', session('LoggedUser'))->first();
-        $user->cars()->attach(2);
-        redirect()->route('index');
+        $user->cars()->attach($id);    //case user is not logged
+        return redirect()->route('index');
     }
 }
