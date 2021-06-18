@@ -11,7 +11,7 @@
             <a href={{env('APP_URL') . "/ad/" . $cars->id}}>
                 <div class="content">
                     <div class="photo">
-                        <img src="http://localhost/car-market-laravel/public/assets/images/test-photo.jpg" alt="">
+                        <img src={{asset('storage/' . $cars->img_url)}} alt="">
                     </div>
                     <div class="description">
                         <h2>{{$cars->brand}} {{$cars->model}}</h2>
