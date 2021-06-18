@@ -20,19 +20,19 @@
             <a href={{env('APP_URL') . "/ad/" . $car->id}}>
                 <div class="content">
                     <div class="photo">
-                        <img src={{env('APP_URL') . "/assets/images/test-photo.jpg"}} alt="">
+                        <img src={{asset('storage/' . $car->img_url)}} alt="">
                     </div>
                     <div class="description">
                         <h2>{{$car->brand}} {{$car->model}}</h2>
                         <ul>
-                            <li>{{$car->year}}</li>
+                            <li>{{$car->production_date}}</li>
                             <li>{{$car->distance}} km</li>
-                            <li>2.0 Pb</li>
+                            <li>{{$car->engine}}</li>
                         </ul>
                     </div>
                     <div class="price">
                         <h2>{{$car->price}} pln</h2>
-                        <form action={{env('APP_URL') . "/watch/" . $car->id}}>
+                        <form action={{env('APP_URL') . "/ad/" . $car->id . '/watch'}}>
                         <button class="watch-button">watch</button>
                         </form>
                     </div>

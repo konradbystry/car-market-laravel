@@ -12,7 +12,7 @@
 
             <div class="content">
                 <div class="photo">
-                    <img src="http://localhost/car-market-laravel/public/assets/images/test-photo.jpg" alt="">
+                    <img src={{asset('storage/' . $car->img_url)}} alt="">
                 </div>
                 <div class="description">
                     <h2>{{$car->brand}} {{$car->model}}</h2>
@@ -24,7 +24,7 @@
                 </div>
                 <div class="price">
                     <h2>{{$car->price}} pln</h3>
-                    <form action="{{route('ad.watch')}}">
+                    <form action="/watch">
                         <button class="watch-button">watch</button>
                     </form>
 

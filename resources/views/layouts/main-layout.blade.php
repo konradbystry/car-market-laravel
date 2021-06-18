@@ -32,7 +32,7 @@
             @endif
             </a></li>
             <li><a href="#">{{$user->name ?? "Guest"}}</a></li>
-            <li><button class=button>+ Start selling</button></li>
+            <li><form action={{env('APP_URL') . "/create-ad"}}><button class=button>+ Start selling</button></form></li>
         </ul>
     </header>
 
