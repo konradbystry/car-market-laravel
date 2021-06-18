@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdController;
 use App\Http\Controllers\CarMarketController;
+use App\Http\Controllers\CreateAdController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\RegisterController;
@@ -46,10 +47,15 @@ Route::get('/logout', [CarMarketController::class, 'logout'])->name('logout');
 
 Route::get('ad/{id}', [AdController::class, 'show'])->name('show');
 
-Route::get('watch/{id}', [AdController::class, 'addToWatches'])->name('ad.watch');
+Route::get('ad/{id}/watch', [AdController::class, 'addToWatches'])->name('ad.watch');
 
 //watches
 
 Route::get('watches', [WatchesController::class, 'generateView'])->name('watches');
 
 Route::get('watches/unwatch/{id}', [WatchesController::class, 'unwatch'])->name('watches.unwatch');
+
+//create ad
+
+Route::get('create-ad', [CreateAdController::class, 'generateView']);
+Route::post('create-ad/upload', [CreateAdController::class, 'create'])->name('create-ad.upload');
