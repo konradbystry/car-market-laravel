@@ -35,7 +35,6 @@ class RegisterController extends Controller
         if ($save) {
             return back()->with('success', 'Account created');
         } else {
-            dd('dupa2');
             return back()->with('fail', 'Something went wrong');
         }
     }
