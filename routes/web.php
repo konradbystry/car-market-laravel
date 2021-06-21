@@ -33,7 +33,7 @@ Route::get('/', [CarMarketController::class, 'index'])->name('index');
 
 //auth
 
-Route::get('auth/login', [LoginController::class, 'generateView']);
+Route::get('auth/login', [LoginController::class, 'generateView'])->name('login');
 
 Route::get('auth/register', [RegisterController::class, 'generateView']);
 
@@ -47,15 +47,15 @@ Route::get('/logout', [CarMarketController::class, 'logout'])->name('logout');
 
 Route::get('ad/{id}', [AdController::class, 'show'])->name('show');
 
-Route::get('ad/{id}/watch', [AdController::class, 'addToWatches'])->name('ad.watch');
+Route::get('ad/{id}/watch', [AdController::class, 'addToWatches'])->name('ad.watch')->middleware('auth');
 
 //watches
 
-Route::get('watches', [WatchesController::class, 'generateView'])->name('watches');
+Route::get('watches', [WatchesController::class, 'generateView'])->name('watches')->middleware('auth');
 
-Route::get('watches/unwatch/{id}', [WatchesController::class, 'unwatch'])->name('watches.unwatch');
+Route::get('watches/unwatch/{id}', [WatchesController::class, 'unwatch'])->name('watches.unwatch')->middleware('auth');
 
 //create ad
 
-Route::get('create-ad', [CreateAdController::class, 'generateView']);
-Route::post('create-ad/upload', [CreateAdController::class, 'create'])->name('create-ad.upload');
+Route::get('create-ad', [CreateAdController::class, 'generateView'])->middleware('auth');
+Route::post('create-ad/upload', [CreateAdController::class, 'create'])->name('create-ad.upload')->middleware('auth');
