@@ -6,6 +6,7 @@ use App\Http\Controllers\CreateAdController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\UserPanelController;
 use App\Http\Controllers\WatchesController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,11 +26,7 @@ use App\Models\User;
 
 
 Route::get('/', [CarMarketController::class, 'index'])->name('index');
-
-
-// Route::post('ad', [AdController::class, 'generateView']);  //temp
-
-
+Route::get('/search', [CarMarketController::class, 'search'])->name('search');
 
 //auth
 
@@ -47,15 +44,21 @@ Route::get('/logout', [CarMarketController::class, 'logout'])->name('logout');
 
 Route::get('ad/{id}', [AdController::class, 'show'])->name('show');
 
-Route::get('ad/{id}/watch', [AdController::class, 'addToWatches'])->name('ad.watch')->middleware('auth');
+Route::get('ad/{id}/watch', [AdController::class, 'addToWatches'])->name('ad.watch')->middleware('CheckUser');
 
 //watches
 
-Route::get('watches', [WatchesController::class, 'generateView'])->name('watches')->middleware('auth');
+Route::get('watches', [WatchesController::class, 'generateView'])->name('watches')->middleware('CheckUser');
 
-Route::get('watches/unwatch/{id}', [WatchesController::class, 'unwatch'])->name('watches.unwatch')->middleware('auth');
+Route::get('watches/unwatch/{id}', [WatchesController::class, 'unwatch'])->name('watches.unwatch')->middleware('CheckUser');
 
 //create ad
 
-Route::get('create-ad', [CreateAdController::class, 'generateView'])->middleware('auth');
-Route::post('create-ad/upload', [CreateAdController::class, 'create'])->name('create-ad.upload')->middleware('auth');
+Route::get('create-ad', [CreateAdController::class, 'generateView'])->middleware('CheckUser');
+Route::post('create-ad/upload', [CreateAdController::class, 'create'])->name('create-ad.upload')->middleware('CheckUser');
+
+//UserPanel
+
+Route::get('/user', [UserPanelController::class, 'generateView'])->name('user')->middleware('CheckUser');
+Route::get('user/{id}/remove', [UserPanelController::class, 'remove'])->name('user.car.remove')->middleware('CheckUser');
+Route::get('user/{id}', [UserPanelController::class, 'show'])->name('user.car.show')->middleware('CheckUser');
