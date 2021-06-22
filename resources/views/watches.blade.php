@@ -6,25 +6,25 @@
 
 
         @if (isset($user))
-        @foreach ($user->cars as $cars)
+        @foreach ($cars as $car)
          <div class="ad">
-            <a href={{env('APP_URL') . "/ad/" . $cars->id}}>
+            <a href={{env('APP_URL') . "/ad/" . $car->id}}>
                 <div class="content">
                     <div class="photo">
-                        <img src={{asset('storage/' . $cars->img_url)}} alt="">
+                        <img src={{asset('storage/' . $car->img_url)}} alt="">
                     </div>
                     <div class="description">
-                        <h2>{{$cars->brand}} {{$cars->model}}</h2>
+                        <h2>{{$car->brand}} {{$car->model}}</h2>
                         <ul>
-                            <li>{{$cars->production_date}}</li>
-                            <li>{{$cars->distance}} km</li>
+                            <li>{{$car->production_date}}</li>
+                            <li>{{$car->distance}} km</li>
                             <li>enigne</li>
                         </ul>
                     </div>
                     <div class="price">
 
-                        <h2>{{$cars->price}} pln</h3>
-                        <form action={{env('APP_URL') . "/watches/unwatch/" . $cars->id}}>
+                        <h2>{{$car->price}} pln</h3>
+                        <form action={{env('APP_URL') . "/watches/unwatch/" . $car->id}}>
                             <button class="unwatch-button">unwatch</button>
                         </form>
 

@@ -8,6 +8,7 @@
     <link rel="icon" href="assets/images/cropped-favicon.png">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/pure-min.css" integrity="sha384-Uu6IeWbM+gzNVXJcM9XV3SohHtmWE+3VGi496jvgX1jyvDTXfdK+rfZc8C1Aehk5" crossorigin="anonymous">
+   <link rel="stylesheet" href="assets/css/bootstrap/bootstrap.min.css">
     <script src="assets/js/header.js" defer></script>
     <script src="https://kit.fontawesome.com/ae43476c3b.js" defer crossorigin="anonymous"></script>
     <title>{{env("APP_NAME")}}</title>
@@ -31,7 +32,7 @@
             Login
             @endif
             </a></li>
-            <li><a href="#">{{$user->name ?? "Guest"}}</a></li>
+            <li><a href={{route('user')}}>{{$user->name ?? "Guest"}}</a></li>
             <li><form action={{env('APP_URL') . "/create-ad"}}><button class=button>+ Start selling</button></form></li>
         </ul>
     </header>

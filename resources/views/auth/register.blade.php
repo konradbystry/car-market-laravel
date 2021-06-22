@@ -13,7 +13,7 @@
                 <input type="password" id="password" name='password' placeholder="Password" /> <br>
 
 
-                <button type="submit" class="pure-button pure-button-primary">Sign in</button>
+                <button type="submit" class="pure-button pure-button-primary">Register</button>
 
 
                 @if (Session::get('fail'))

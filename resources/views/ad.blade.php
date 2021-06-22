@@ -9,13 +9,13 @@
 
 @section('content')
 
-    <div class="ad">
+    <div class="add">
 
-            <div class="content">
-                <div class="photo">
+            <div class="contentt">
+                <div class="photoo">
                     <img src={{asset('storage/' . $car->img_url)}} alt="">
                 </div>
-                <div class="description">
+                <div class="descriptionn">
                     <h2>{{$car->brand}} {{$car->model}}</h2>
                     <ul>
                         <li>{{$car->production_date}}</li>
@@ -23,7 +23,7 @@
                         <li>enigne</li>
                     </ul>
                 </div>
-                <div class="price">
+                <div class="pricee">
                     <h2>{{$car->price}} pln</h3>
                     <form action={{env('APP_URL') . "/ad/" . $car->id . '/watch'}}>
                         <button class="watch-button">watch</button>
