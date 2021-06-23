@@ -50,15 +50,20 @@ Route::get('ad/{id}/watch', [AdController::class, 'addToWatches'])->name('ad.wat
 
 Route::get('watches', [WatchesController::class, 'generateView'])->name('watches')->middleware('CheckUser');
 
-Route::get('watches/unwatch/{id}', [WatchesController::class, 'unwatch'])->name('watches.unwatch')->middleware('CheckUser');
+Route::get('watches/{id}/unwatch', [WatchesController::class, 'unwatch'])->name('watches.unwatch')->middleware('CheckUser');
+
+Route::get('watches/{id}', [WatchesController::class, 'show'])->name('watches.show')->middleware('CheckUser');
 
 //create ad
 
 Route::get('create-ad', [CreateAdController::class, 'generateView'])->middleware('CheckUser');
+
 Route::post('create-ad/upload', [CreateAdController::class, 'create'])->name('create-ad.upload')->middleware('CheckUser');
 
 //UserPanel
 
 Route::get('/user', [UserPanelController::class, 'generateView'])->name('user')->middleware('CheckUser');
+
 Route::get('user/{id}/remove', [UserPanelController::class, 'remove'])->name('user.car.remove')->middleware('CheckUser');
+
 Route::get('user/{id}', [UserPanelController::class, 'show'])->name('user.car.show')->middleware('CheckUser');
