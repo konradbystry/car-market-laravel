@@ -8,7 +8,7 @@
     <link rel="icon" href="assets/images/cropped-favicon.png">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/pure-min.css" integrity="sha384-Uu6IeWbM+gzNVXJcM9XV3SohHtmWE+3VGi496jvgX1jyvDTXfdK+rfZc8C1Aehk5" crossorigin="anonymous">
-   <link rel="stylesheet" href="assets/css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap/bootstrap.min.css">
     <script src="assets/js/header.js" defer></script>
     <script src="https://kit.fontawesome.com/ae43476c3b.js" defer crossorigin="anonymous"></script>
     <title>{{env("APP_NAME")}}</title>
@@ -19,14 +19,16 @@
         <ul>
 
             <li><a href={{env('APP_URL') . "/watches"}}>Watching</a></li>
-            <li><a href={{env('APP_URL') . "/auth/register"}}>Register</a></li>
+            @if(!isset($user))
+                <li><a href={{env('APP_URL') . "/auth/register"}}>Register</a></li>
+            @endif
             <li><a href=
-                @if(isset($user->name))
+                @if(isset($user))
                 {{env('APP_URL') . "/logout"}}>
                 @else
                 {{env('APP_URL') . "/auth/login"}}>
                 @endif
-            @if(isset($user->name))
+            @if(isset($user))
             Logout
             @else
             Login
@@ -40,6 +42,7 @@
     @yield('content')
 
 
+    @yield('scripts')
 </body>
 
 </html>

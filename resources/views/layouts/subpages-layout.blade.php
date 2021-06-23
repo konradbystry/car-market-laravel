@@ -20,21 +20,23 @@
         <a href={{env('APP_URL')}} class="logo">Car Market</a>
         <ul>
             <li><a href={{env('APP_URL') . "/watches"}}>Watching</a></li>
-            <li><a href={{env('APP_URL') . "/auth/register"}}>Register</a></li>
+            @if(!isset($user))
+                <li><a href={{env('APP_URL') . "/auth/register"}}>Register</a></li>
+            @endif
             <li><a href=
-                @if(isset($user->name))
+                @if(isset($user))
                 {{env('APP_URL') . "/logout"}}>
                 @else
                 {{env('APP_URL') . "/auth/login"}}>
                 @endif
-            @if(isset($user->name))
+            @if(isset($user))
             Logout
             @else
             Login
             @endif
             </a></li>
-            <li><a href="#">{{$user->name ?? "Guest"}}</a></li>
-            <li><button class=button>+ Start selling</button></li>
+            <li><a href={{route('user')}}>{{$user->name ?? "Guest"}}</a></li>
+            <li><form action="{{env('APP_URL') . "/create-ad"}}"><button class=button>+ Start selling</button></form></li>
         </ul>
     </header>
 

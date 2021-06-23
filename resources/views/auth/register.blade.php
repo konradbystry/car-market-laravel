@@ -15,9 +15,14 @@
 
                 <button type="submit" class="pure-button pure-button-primary">Register</button>
 
+                @if ($errors->any())
+                    @foreach ($errors->all() as $error)
+                        <h5 class="login-error">{{ $error }}</li>
+                    @endforeach
+                @endif
 
                 @if (Session::get('fail'))
-                    <h2>fail</h2>
+                    <h5 class="login-error">{{Session::get('fail')}}</h5>
                 @endif
 
 

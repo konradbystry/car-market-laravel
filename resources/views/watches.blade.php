@@ -8,7 +8,7 @@
         @if (isset($user))
         @foreach ($cars as $car)
          <div class="ad">
-            <a href={{env('APP_URL') . "/ad/" . $car->id}}>
+            <a href={{env('APP_URL') . "/watches/" . $car->id}}>
                 <div class="content">
                     <div class="photo">
                         <img src={{asset('storage/' . $car->img_url)}} alt="">
@@ -24,7 +24,7 @@
                     <div class="price">
 
                         <h2>{{$car->price}} pln</h3>
-                        <form action={{env('APP_URL') . "/watches/unwatch/" . $car->id}}>
+                        <form action={{env('APP_URL') . "/watches/" . $car->id . "/unwatch"}}>
                             <button class="unwatch-button">unwatch</button>
                         </form>
 
