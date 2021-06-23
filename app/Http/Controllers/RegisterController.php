@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -21,16 +22,19 @@ class RegisterController extends Controller
     {
         $request->validate([
             'username' => 'required',
-            'email' => 'required',
+            'email' => 'required|email',
             'password' => 'required'
         ]);
 
-
-        $user = new User;
-        $user->name = $request->username;
-        $user->email = $request->email;
-        $user->password = Hash::make($request->password);
-        $save = $user->save();
+        try {
+            $user = new User;
+            $user->name = $request->username;
+            $user->email = $request->email;
+            $user->password = Hash::make($request->password);
+            $save = $user->save();
+        } catch (Exception $e) {
+            return back()->with('fail', 'This username or email is taken');
+        }
 
         if ($save) {
             return back()->with('success', 'Account created');

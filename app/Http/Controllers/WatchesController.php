@@ -30,4 +30,14 @@ class WatchesController extends Controller
         $user->cars()->detach($id);
         return redirect()->route('watches');
     }
+
+    public function show($id)
+    {
+        $car = Car::where('id', '=', $id)->first();
+        $user = User::where('id', '=', session('LoggedUser'))->first();
+        return view('UnwatchFullScreen', [
+            'user' => $user,
+            'car' => $car
+        ]);
+    }
 }

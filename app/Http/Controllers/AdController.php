@@ -15,8 +15,12 @@ class AdController extends Controller
 
     public function show($id)
     {
+        $user = User::where('id', '=', session('LoggedUser'))->first();
         $car = Car::where('id', '=', $id)->first();
-        return view('ad', ['car' => $car]);
+        return view('ad', [
+            'car' => $car,
+            'user' => $user
+        ]);
     }
 
     public function addToWatches($id)
@@ -25,6 +29,8 @@ class AdController extends Controller
 
         $user = User::where('id', '=', session('LoggedUser'))->first();
         $user->cars()->attach($id);    //case user is not logged
-        return redirect()->route('index');
+        return response()->json([
+            'status' => 'success'
+        ]);
     }
 }

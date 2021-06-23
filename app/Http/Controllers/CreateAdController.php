@@ -14,7 +14,7 @@ class CreateAdController extends Controller
     {
         $user = User::where('id', '=', session('LoggedUser'))->first();
 
-        return view('CreateAd');
+        return view('CreateAd', ['user' => $user]);
     }
 
     public function create(Request $request)
@@ -22,11 +22,22 @@ class CreateAdController extends Controller
 
 
 
-
+        //dd($user = User::where('id', '=', session('LoggedUser'))->first()->name);
 
         //dd($request->image);
+        $request->validate([
+            'brand' => 'required',
+            'model' => 'required',
+            'distance' => 'required|numeric',
+            'productionDate' => 'required|date',
+            'engine' => 'required',
+            'power' => 'required|numeric',
+            'price' => 'required|numeric',
+            'phone' => 'required|numeric',
+            'image' => 'required'
 
-        //dd('udało ci się Konrad gratuluję');
+        ]);
+
 
         $car = new Car();
         $car->brand = $request->brand;
@@ -38,6 +49,7 @@ class CreateAdController extends Controller
         $car->price = $request->price;
         $car->phone = $request->phone;
         $car->img_url = $request->brand . $request->model . '.jpg';
+        $car->owner = User::where('id', '=', session('LoggedUser'))->first()->name;
         $save = $car->save();
 
         if ($save) {
