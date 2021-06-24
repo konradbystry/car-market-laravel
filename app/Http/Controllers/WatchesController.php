@@ -29,6 +29,9 @@ class WatchesController extends Controller
         $user = User::where('id', '=', session('LoggedUser'))->first(); //change
         $user->cars()->detach($id);
         return redirect()->route('watches');
+        // return response()->json([
+        //    'success' => 'success'
+        //]);
     }
 
     public function show($id)

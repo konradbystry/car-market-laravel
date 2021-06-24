@@ -8,7 +8,7 @@
         @if (isset($user))
         @foreach ($cars as $car)
          <div class="ad">
-            <a href={{env('APP_URL') . "/watches/" . $car->id}}>
+            <a href={{env('APP_URL') . "/user/" . $car->id}}>
                 <div class="content">
                     <div class="photo">
                         <img src={{asset('storage/' . $car->img_url)}} alt="">
@@ -24,8 +24,8 @@
                     <div class="price">
 
                         <h2>{{$car->price}} pln</h3>
-                        <form action={{env('APP_URL') . "/watches/" . $car->id . "/unwatch"}}>
-                            <button class="unwatch-button" data-car="{{$car->id}}"">unwatch</button>
+                        <form action="">
+                            <button class="remove-button" data-car="{{$car->id}}">Remove</button>
                         </form>
 
                     </div>
@@ -47,6 +47,7 @@
 @endsection
 
 @section('scripts')
+
 <script
 src="https://code.jquery.com/jquery-3.6.0.js"
  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
@@ -54,19 +55,20 @@ src="https://code.jquery.com/jquery-3.6.0.js"
 
 <script>
     $(function(){
-        $(".unwatch-button").click(function(e){
+        $(".remove-button").click(function(e){
             e.preventDefault();
             console.log($(this).data('car'));
+            console.log('works');
             $.ajax({
                 method: "GET",
-                url: "http://localhost/car-market-laravel/public/watches/" + $(this).data('car') + "/unwatch" ,
+                url: "http://localhost/car-market-laravel/public/user/" + $(this).data('car') + "/remove" ,
                 //data: { name: "John", location: "Boston" }
             })
             .done(function(response) {
                 window.location.reload();
             })
             .fail(function(response){
-                alert("Please login to watch this ad");
+                alert("Something went wrong");
             })
         })
     });

@@ -34,7 +34,7 @@
                                 <div class="price">
                                     <h2>{{$car->price}} pln</h2>
                                     <form action={{env('APP_URL') . "/ad/" . $car->id . '/watch'}} class='watch'>
-                                        <button class="watch-button" data-car="{{$car->id}}" data-user="{{$user->id}}">watch</button>
+                                        <button class="watch-button" data-car="{{$car->id}}" data-user="{{isset($user)}}">watch</button>
                                     </form>
                                 </div>
                             </div>
@@ -55,34 +55,44 @@
 
     </section>
 
-    @section('scripts')
-        <script
-        src="https://code.jquery.com/jquery-3.6.0.js"
-         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-          crossorigin="anonymous"></script>
-
-        <script>
-            $(function(){
-                $(".watch-button").click(function(e){
-                    e.preventDefault();
-                    console.log($(this).data('car'));
-                    $.ajax({
-                        method: "GET",
-                        url: "http://localhost/car-market-laravel/public/ad/" + $(this).data('car') + "/watch" ,
-                        //data: { name: "John", location: "Boston" }
-                    })
-                    .done(function(response) {
-                        alert( "Added to watches");
-                    })
-                    .fail(function(response){
-                        alert("Something went wrong");
-                    })
-                })
-            });
-        </script>
 
 
-    @endsection
+
+@endsection
+
+
+@section('scripts')
+<script
+src="https://code.jquery.com/jquery-3.6.0.js"
+ integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+
+<script>
+    $(function(){
+        $(".watch-button").click(function(e){
+            e.preventDefault();
+            const user = $(this).data('user');
+            console.log(user);
+
+            $.ajax({
+                method: "GET",
+                url: "http://localhost/car-market-laravel/public/ad/" + $(this).data('car') + "/watch"
+            })
+            .done(function(response) {
+
+                if(user != "") {   //null didn't work
+                    alert("Added to watches");
+                }else{
+
+                    alert("Please login to watch this ad");
+                }
+            })
+            .fail(function(response){
+                alert("Smoething went wrong");
+            })
+        })
+    });
+</script>
 
 
 @endsection
