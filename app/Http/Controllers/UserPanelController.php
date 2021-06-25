@@ -9,10 +9,12 @@ use Illuminate\Support\Facades\DB;
 
 class UserPanelController extends Controller
 {
+    //private $user = $this->getUser();
+
     public function generateView()
     {
 
-        $user = User::where('id', '=', session('LoggedUser'))->first();
+        $user = $this->getUser();
         $cars = DB::table('cars')->where('owner', '=', $user->name)->paginate(3);
 
         return view('UserPanel', [
@@ -23,7 +25,7 @@ class UserPanelController extends Controller
 
     public function remove($id)
     {
-        $user = User::where('id', '=', session('LoggedUser'))->first();
+        $user = $this->getUser();
         $user->cars()->detach($id);
         Car::where('id', '=', $id)->firstorfail()->delete();
         return redirect()->route('user');
@@ -31,7 +33,7 @@ class UserPanelController extends Controller
 
     public function show($id)
     {
-        $user = User::where('id', '=', session('LoggedUser'))->first();
+        $user = $this->getUser();
         $car = Car::where('id', '=', $id)->first();
 
         return view('RemoveFullScreen', [

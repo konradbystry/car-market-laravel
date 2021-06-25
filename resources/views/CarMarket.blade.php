@@ -18,7 +18,7 @@
             @if(count($cars)>0)
                 @foreach ($cars as $car)
                     <div class="ad">
-                        <a href={{env('APP_URL') . "/ad/" . $car->id}}>
+                        <a href={{env('APP_URL') . "/ad/" . $car->id}} class="text-decoration-none">
                             <div class="content">
                                 <div class="photo">
                                     <img src={{asset('storage/' . $car->img_url)}} alt="">
@@ -80,7 +80,7 @@ src="https://code.jquery.com/jquery-3.6.0.js"
             })
             .done(function(response) {
 
-                if(user != "") {   //null didn't work
+                if(user != "") {   //null didn't work, empty string case
                     alert("Added to watches");
                 }else{
 

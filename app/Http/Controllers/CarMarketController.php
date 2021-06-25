@@ -9,15 +9,13 @@ use Illuminate\Support\Facades\DB;
 
 class CarMarketController extends Controller
 {
+
     public function index()
     {
-        $user = User::where('id', '=', session('LoggedUser'))->first();
-        //$cars = Car::all();
         $cars = DB::table('cars')->paginate(3);
-
         return view('CarMarket', [
             'cars' => $cars,
-            'user' => $user
+            'user' => $this->getUser()
         ]);
     }
 
@@ -29,7 +27,7 @@ class CarMarketController extends Controller
 
     public function search(Request $request)
     {
-        $user = User::where('id', '=', session('LoggedUser'))->first();
+        //$user = User::where('id', '=', session('LoggedUser'))->first();
 
         if (isset($_GET['query'])) {
             $searchText = $_GET['query'];
@@ -37,7 +35,7 @@ class CarMarketController extends Controller
             $cars->appends($request->all());
             return view('CarMarket', [
                 'cars' => $cars,
-                'user' => $user
+                'user' => $this->getUser()
             ]);
         } else {
             return redirect()->route('index');

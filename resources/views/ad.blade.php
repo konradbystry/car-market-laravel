@@ -20,7 +20,9 @@
                     <ul>
                         <li>{{$car->production_date}}</li>
                         <li>{{$car->distance}} km</li>
-                        <li>enigne</li>
+                        <li>{{$car->engine}}</li>
+                        <li>{{$car->power}} horse power</li>
+                        <li>contact: {{$car->phone}}</li>
                     </ul>
                 </div>
                 <div class="pricee">

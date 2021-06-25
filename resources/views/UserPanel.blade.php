@@ -42,6 +42,12 @@
             {{$cars->links('layouts.pagination')}}
         </div>
 
+        @if (count($cars) == 0)
+        <div class="empty">
+            <h3>No ads yet, start selling now!</h3>
+        </div>
+        @endif
+
     </section>
 
 @endsection

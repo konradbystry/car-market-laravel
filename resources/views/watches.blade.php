@@ -6,36 +6,40 @@
 
 
         @if (isset($user))
-        @foreach ($cars as $car)
-         <div class="ad">
-            <a href={{env('APP_URL') . "/watches/" . $car->id}}>
-                <div class="content">
-                    <div class="photo">
-                        <img src={{asset('storage/' . $car->img_url)}} alt="">
+            @foreach ($cars as $car)
+            <div class="ad">
+                <a href={{env('APP_URL') . "/watches/" . $car->id}}>
+                    <div class="content">
+                        <div class="photo">
+                            <img src={{asset('storage/' . $car->img_url)}} alt="">
+                        </div>
+                        <div class="description">
+                            <h2>{{$car->brand}} {{$car->model}}</h2>
+                            <ul>
+                                <li>{{$car->production_date}}</li>
+                                <li>{{$car->distance}} km</li>
+                                <li>{{$car->engine}}</li>
+                            </ul>
+                        </div>
+                        <div class="price">
+
+                            <h2>{{$car->price}} pln</h3>
+                            <form action={{env('APP_URL') . "/watches/" . $car->id . "/unwatch"}}>
+                                <button class="unwatch-button" data-car="{{$car->id}}"">unwatch</button>
+                            </form>
+
+                        </div>
+
                     </div>
-                    <div class="description">
-                        <h2>{{$car->brand}} {{$car->model}}</h2>
-                        <ul>
-                            <li>{{$car->production_date}}</li>
-                            <li>{{$car->distance}} km</li>
-                            <li>enigne</li>
-                        </ul>
-                    </div>
-                    <div class="price">
+                </a>
+            </div>
+            @endforeach
+        @endif
 
-                        <h2>{{$car->price}} pln</h3>
-                        <form action={{env('APP_URL') . "/watches/" . $car->id . "/unwatch"}}>
-                            <button class="unwatch-button" data-car="{{$car->id}}"">unwatch</button>
-                        </form>
-
-                    </div>
-
-                </div>
-
-            </a>
-
+        @if (count($cars) == 0)
+        <div class="empty">
+            <h3>No watches yet, let's browse some ads!</h3>
         </div>
-        @endforeach
         @endif
 
         <div class="pagination-block">
@@ -59,8 +63,7 @@ src="https://code.jquery.com/jquery-3.6.0.js"
             console.log($(this).data('car'));
             $.ajax({
                 method: "GET",
-                url: "http://localhost/car-market-laravel/public/watches/" + $(this).data('car') + "/unwatch" ,
-                //data: { name: "John", location: "Boston" }
+                url: "http://localhost/car-market-laravel/public/watches/" + $(this).data('car') + "/unwatch"
             })
             .done(function(response) {
                 window.location.reload();

@@ -12,9 +12,9 @@ class CreateAdController extends Controller
 {
     public function generateView()
     {
-        $user = User::where('id', '=', session('LoggedUser'))->first();
+        //$user = User::where('id', '=', session('LoggedUser'))->first();
 
-        return view('CreateAd', ['user' => $user]);
+        return view('CreateAd', ['user' => $this->getUser()]);
     }
 
     public function create(Request $request)
@@ -54,9 +54,9 @@ class CreateAdController extends Controller
 
         if ($save) {
             $request->image->storeAs('public', $car->img_url);
-            return 'good';
+            return redirect()->route('user');
+        } else {
+            return back()->with('fail', 'Something went wrong');
         }
-
-        return 'bad';
     }
 }

@@ -13,7 +13,7 @@ class WatchesController extends Controller
 
     public function generateView()
     {
-        $user = User::where('id', '=', session('LoggedUser'))->first();
+        $user = $this->getUser();
         $cars = $user->cars()->paginate(3);
         //dd($cars);
         return view('watches', [
@@ -26,7 +26,7 @@ class WatchesController extends Controller
     public function unwatch($id)
     {
 
-        $user = User::where('id', '=', session('LoggedUser'))->first(); //change
+        $user = $this->getUser();
         $user->cars()->detach($id);
         return redirect()->route('watches');
         // return response()->json([
@@ -37,9 +37,9 @@ class WatchesController extends Controller
     public function show($id)
     {
         $car = Car::where('id', '=', $id)->first();
-        $user = User::where('id', '=', session('LoggedUser'))->first();
+        //$user = User::where('id', '=', session('LoggedUser'))->first();
         return view('UnwatchFullScreen', [
-            'user' => $user,
+            'user' => $this->getUser(),
             'car' => $car
         ]);
     }
